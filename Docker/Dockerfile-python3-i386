@@ -1,0 +1,5 @@
+FROM i386/ubuntu:18.04
+SHELL ["/bin/bash", "-i", "-c"]
+
+#Python version build
+
