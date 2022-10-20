@@ -46,8 +46,8 @@ data "aws_ami" "ubuntu" {
 
 provider "aws" {
     region = "ap-southeast-1"
-    access_key = "AKIAVJP2DWQIOMTTALVX"
-    secret_key = "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"
+    access_key = ""
+    secret_key = ""
 }
 
 resource "random_pet" "sg" {}
