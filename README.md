@@ -43,6 +43,8 @@ I after setting up an environment with main.tf, I cloned the repo into my EC2 in
 
 [Jenkins Dockerfile](https://github.com/mk3-14159/devops-project/blob/main/Jenkins/Dockerfile)
 
+![jenkins screenshot](https://static.filehorse.com/screenshots/developer-tools/jenkins-screenshot-01.png)
+
 1. building the docker image for Jenkins 
 ```
 docker build -t myjenkins-blueocean:2.332.3-1 .
@@ -87,6 +89,9 @@ docker exec -t jenkins-blueocean bash -c 'which python3'
 
 
 ### 3. Setting up GH Actins to deploy CI into EC2 instance using Terraform
+
+[Repo Link - Use for demo](https://github.com/mk3-14159/simple-gha-terraform-project)
+
   1. terraform init - initialize terraform based on your  configurations
   2. terraform plan - runs sanity check on the .tf script to make sure everything is G 
   3. terraform apply -  applies the changes that will take place
