@@ -4,35 +4,7 @@ This repository contains a collection of implementations for the devops tools re
 [Trello Link](https://trello.com/b/lecakUAx/ci-cd-pipeline-project-a-compelte-infrastructure-automation-story)
 
 ### Introduction
-I have been tasked to learn more about the CI / CD development stack eg. Jenkins, codify, terraform, ansible, github actions etc. This is a deveops project dedicated to showcase my learning and 
-
-
-
-
-
-### Specification 
-The following collection of tools I have used setup a Devops CI/CD pipeline to deploy a fullstack application
-
-
-### IntellBB Download instructions
-
-[original repo](https://github.com/flaskbb/flaskbb)
-
-```
-git checkout 2.0.0
-
-
-# Build
-virtualenv .venv
-source .venv/bin/activate
-pip3 install -r requirements.txt
-flaskbb install
-
-flaskbb --config flaskbb.cfg run
-flaskbb --config flaskbb.configs.default.DefaultConfig run
-```
-
-
+I have been tasked to learn more about the CI / CD development stack eg. Jenkins, codify, terraform, ansible, github actions etc. This is a deveops project dedicated to showcase my learning.
 
 ### tools utilised
 1. git
@@ -42,16 +14,33 @@ flaskbb --config flaskbb.configs.default.DefaultConfig run
 5. Ansible plugins
 6. Github Actions
 
+### Specification 
+The following collection of tools I have used setup a Devops CI/CD pipeline to deploy a fullstack application
 
+### Exercise 1 - IntelBB
 
-### 1. Setting up the production github repo
-  1. fork the repo
-  2. clone to machine
-  3. setting up ssh 
+[My fork of the FlaskkBB repo (IntelBB)](https://github.com/mk3-14159/intelbb)
 
+build instructions
+```
+git checkout 2.0.0
+virtualenv .venv
+source .venv/bin/activate
+pip3 install -r requirements.txt
+flaskbb install
 
+flaskbb --config flaskbb.cfg run
+flaskbb --config flaskbb.configs.default.DefaultConfig run
+```
 
-### 2. Setting up jenkins server using docker container
+| Challenges | Solution | 
+| :---       | :---     |
+I after setting up an environment with main.tf, I cloned the repo into my EC2 instance - however due to my unfamiliarity with flask I could only run the flask app on localhost. Which meant that the application was not accessible to the public through the public dns | Utilised Apache2 or Gunicorn to deploy the flask application, or deploy a docker image of flaskBB with a preconfigured build
+
+### Exercise 2 - Setting up jenkins server using docker container
+
+[Jenkins Dockerfile](https://github.com/mk3-14159/devops-project/blob/main/Jenkins/Dockerfile)
+
 1. building the docker image for Jenkins 
 ```
 docker build -t myjenkins-blueocean:2.332.3-1 .
@@ -95,36 +84,17 @@ docker exec -t jenkins-blueocean bash -c 'which python3'
 | When testing the Docker build image (Dockerfile-py3-i386) on my local machine, it was taking too long to to build (over 15 minutes). | Utilize .dockerignore files to to exlude files from being sent on build and save time
 
 
-### 3. Setting up a Jenkins agent using terraform
-
-### 4. Setting up Terraform to deploy an EC2 instance to host our jenkins dev server
+### 3. Setting up GH Actins to deploy CI into EC2 instance using Terraform
   1. terraform init - initialize terraform based on your  configurations
   2. terraform plan - runs sanity check on the .tf script to make sure everything is G 
   3. terraform apply -  applies the changes that will take place
   4. creating a vpc for a test server
-  5. use EOF to install all the dependencies for FlaskBB
+  5. use EOF to install all my index.htmk
+  6. Write Terraform.yml to automate the CI pipeline
 
-### Jenkins
-build trigger when changes are made [47 mins](https://www.youtube.com/watch?v=6YZvp2GwT0A)
-
-  - Install / Setup Master
-  - Setup up a cloud agent using docker
-  - Setting up a declarative pipeline (groovy)
-
-Challenges
-  1. In Jenkins pipelines, the stages of development are followed upstream eg. build -> test -> deliever. It means when tests fail deliver will default to a failed build
-
-Solution
-  2. 
 
 | Challenges | Solution | 
 | :---       | :---     |
-|  In Jenkins pipelines, the stages of development are followed upstream eg. build -> test -> deliever. It means when tests fail deliver will default to a failed build | Debug the pipelines from levels, make sure the lower levels build before debugging the delivery stage
+| While I manage to deploy to EC2 Using Terraform with my AWS credentials hardcoded in main.tf, I could not do it through GH actions as it always gets stuck on the terraform apply step | I think the reason why GH Actions did not pass is due to a missed security verification step? eg. Terraform Cloud, AWS or github security
 
-
-
-### Ansible
-
-
-### Github Actions
 
