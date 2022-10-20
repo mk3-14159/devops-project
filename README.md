@@ -21,6 +21,8 @@ The following collection of tools I have used setup a Devops CI/CD pipeline to d
 
 [My fork of the FlaskkBB repo (IntelBB)](https://github.com/mk3-14159/intelbb)
 
+![intelbb](https://github.com/mk3-14159/devops-project/blob/main/img/intelbb.png)
+
 build instructions
 ```
 git checkout 2.0.0
